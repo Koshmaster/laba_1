@@ -15,9 +15,20 @@ public class MainApplication {
         for (String arg : args)
         {
             String[] parts = arg.split(("/"));
-            if (parts.length == 2)
+            if (parts[0].equals("Cake"))
             {
                 breakfast[i] = new Cake(parts[1]);
+                i++;
+            }
+            else if(parts[0].equals("Apple"))
+            {
+                breakfast[i] = new Apple(parts[1]);
+                i++;
+            }
+
+            else if(parts[0].equals("Cheese"))
+            {
+                breakfast[i] = new Cheese();
                 i++;
             }
             switch (parts[0])
@@ -63,17 +74,15 @@ public class MainApplication {
         {
             Arrays.sort(breakfast, new Comparator()
             {
-                public int compare(Object o2, Object o1)
+                public int compare(Object o1, Object o2)
                 {
-                    if (o2 == null || ((Food)o2).par1.length() > ((Food)o1).par1.length())
-                    {
-                        return 1;
-                    }
-                    if (o1 == null || ((Food)o2).par1.length() < ((Food)o1).par1.length())
-                    {
-                        return -1;
-                    }
-                    else return 0;
+                    if(o1==null) return 1;
+
+                    if(o2==null) return -1;
+
+                    if(o1.toString().length()>o2.toString().length()) return 1;
+
+                    else return -1;
                 }
             });
 
